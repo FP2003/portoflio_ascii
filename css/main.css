@@ -1,7 +1,7 @@
 
 
 body {
-    font-family: system-ui, 'Helvetica Neue', sans-serif;
+    font-family: "Inter", "Helvetica", "Arial", sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -22,4 +22,14 @@ body {
 
 #mode-toggle {
     color: inherit;
+}
+
+mark {
+    color: #136e2f;
+    background: none;
+}
+
+.dark mark {
+    color: #5a9e70;
+    background: none;
 }
