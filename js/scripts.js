@@ -39,7 +39,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeo
     });
 
 
-    gsap.from('header', {
+    gsap.from('header, main', {
         duration: 1.5,
         y: -30,
         opacity: 0,
