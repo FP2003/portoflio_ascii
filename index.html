@@ -9,22 +9,32 @@
 </head>
 
 <body class="transition-colors duration-800">
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content" class="p-8">
     
-    <header class="flex justify-between items-center mb-8 p-2">
-        <h1 class="text-xl sm:text-2xl font-bold tracking-widest transition-all duration-800">
-            Filip Pielecki
-        </h1>
+            <header class="flex justify-between items-center mb-8 p-2">
+                <h1 class="text-xl sm:text-2xl font-bold tracking-widest transition-all duration-800">
+                    Filip Pielecki
+                </h1>
 
-        <button id="mode-toggle" class="rounded-full hover:opacity-80 transition-opacity text-2xl font-bold">
-            [☀️/🌙]
-        </button>
-    </header>
+                <button id="mode-toggle" class="rounded-full hover:opacity-80 transition-opacity text-2xl font-bold">
+                    [☀️/🌙]
+                </button>
+            </header>
 
-    <main class="flex-grow text-center">
-        <b>This is the testing line.</b>
-    </main>
+            <main class="flex-grow justify-start pl-2">
+                <b>This is the testing line.</b>
+            </main>
+    
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
 
     <script src="js/scripts.js"></script>
-
+    
 </body>
 </html>

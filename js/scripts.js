@@ -25,3 +25,24 @@ setTheme(initialDarkState);
 toggleButton.addEventListener('click', () => {
     setTheme(!html.classList.contains('dark'));
 });
+
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeof ScrollSmoother !== 'undefined') {
+
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+    const smoother = ScrollSmoother.create({
+    wrapper: '#smooth-wrapper',
+    content: '#smooth-content',
+    smooth: 1.2, // Tweak this value for the desired smoothing amount
+    normalizeScroll: true, // Prevents native scroll from being jumpy
+    ignoreMobileResize: true // Often helpful for consistent behavior
+    });
+
+
+    gsap.from('header', {
+        duration: 1.5,
+        y: -30,
+        opacity: 0,
+        ease: "power3.out"
+    });
+}
