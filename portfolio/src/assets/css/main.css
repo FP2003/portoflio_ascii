@@ -6,6 +6,8 @@ body {
     padding: 2rem;
     margin: 0;
     transition: background-color 0.8s, color 0.8s;
+    overflow: hidden;
+    scrollbar-width: none;
 }
 
 body {
@@ -30,4 +32,14 @@ mark {
 .dark mark {
     color: #5a9e70;
     background: none;
+}
+
+::selection {
+    background: transparent;
+    color: #F2F0EF;
+}
+
+.dark ::selection {
+    background: transparent;
+    color: #1f271b;
 }
