@@ -1,0 +1,35 @@
+
+
+body {
+    font-family: "Inter", "Helvetica", "Arial", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 0;
+    transition: background-color 0.8s, color 0.8s;
+}
+
+body {
+    background-color: #F2F0EF;
+    color: #1f271b;
+}
+
+.dark body {
+    background-color: #1f271b;
+    color: #F2F0EF;
+}
+
+#mode-toggle {
+    color: inherit;
+}
+
+mark {
+    color: #136e2f;
+    background: none;
+}
+
+.dark mark {
+    color: #5a9e70;
+    background: none;
+}
