@@ -1,5 +1,3 @@
-
-
 const html = document.documentElement;
 const toggleButton = document.getElementById('mode-toggle');
 
