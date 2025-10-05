@@ -1,32 +1,34 @@
 // THREEJS
 import * as THREE from 'three';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-const canvas = document.querySelector('#three-canvas');
+window.addEventListener('DOMContentLoaded', () => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+    const canvas = document.querySelector('#three-canvas');
 
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-renderer.setSize( canvas.clientWidth, canvas.clientHeight, false );
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    renderer.setSize( canvas.clientWidth, canvas.clientHeight, false );
 
-window.addEventListener('resize', () => {
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+    window.addEventListener('resize', () => {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+    });
+
+    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    const material = new THREE.MeshBasicMaterial( { color: 0x5a9e70 } );
+    const cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    camera.position.z = 2;
+
+    function animate() {
+        renderer.render( scene, camera );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+    }
+    renderer.setAnimationLoop( animate );
 });
-
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x5a9e70 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
-
-camera.position.z = 10;
-
-function animate() {
-    renderer.render( scene, camera );
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-}
-renderer.setAnimationLoop( animate );
 
 
 // DARK MODE
