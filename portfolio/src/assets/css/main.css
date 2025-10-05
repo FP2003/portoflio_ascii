@@ -43,3 +43,12 @@ mark {
     background: transparent;
     color: #1f271b;
 }
+
+#three-canvas {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+}
+
