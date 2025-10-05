@@ -6,8 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     const canvas = document.querySelector('#three-canvas');
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize( canvas.clientWidth, canvas.clientHeight, false );
+    renderer.shadowMap.enabled = true;
 
     window.addEventListener('resize', () => {
         camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -15,17 +16,40 @@ window.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     });
 
-    const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    const material = new THREE.MeshBasicMaterial( { color: 0x5a9e70 } );
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    // Room
+    const roomGeometry = new THREE.BoxGeometry( 70, 50, 70 );
+    const roomMaterial = new THREE.MeshStandardMaterial({
+        side: THREE.BackSide
+    });
+    const room = new THREE.Mesh( roomGeometry, roomMaterial );
+    room.receiveShadow = true;
+    scene.add( room );
 
-    camera.position.z = 2;
+    // Edges
+    const edges = new THREE.EdgesGeometry( roomGeometry );
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x11120e });
+    const wireframe = new THREE.LineSegments( edges, edgeMaterial );
+    scene.add( wireframe );
+
+    // Lights
+    const ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
+    scene.add( ambientLight );
+
+    const directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    directionalLight.position.set( 10, 15, 5 );
+    directionalLight.castShadow = true;
+    scene.add( directionalLight );
+
+    // Camera Position
+    camera.position.set(-7, 7, 8);
+    camera.lookAt(0, 0, 0);
 
     function animate() {
+        // Update room color based on dark mode
+        const isDark = document.documentElement.classList.contains('dark');
+        roomMaterial.color.set(isDark ? 0x1f271b : 0xF2F0EF);
+
         renderer.render( scene, camera );
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
     }
     renderer.setAnimationLoop( animate );
 });

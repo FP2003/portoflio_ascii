@@ -40,19 +40,20 @@ mark {
 
 ::selection {
     background: transparent;
-    color: #F2F0EF;
+    color: #81817f;
 }
 
 .dark ::selection {
     background: transparent;
-    color: #1f271b;
+    color: #11120e;
 }
 
 #three-canvas {
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 6vh;
-    margin-bottom: 6vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
 
