@@ -31,6 +31,25 @@ window.addEventListener('DOMContentLoaded', () => {
     const wireframe = new THREE.LineSegments( edges, edgeMaterial );
     scene.add( wireframe );
 
+    // Particles
+    const particleCount = 500;
+    const particles = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 70;
+    }
+
+    particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+        size: 0.1,
+        color: 0x11120e
+    });
+
+    const particleSystem = new THREE.Points(particles, particleMaterial);
+    scene.add(particleSystem);
+
     // Lights
     const ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
     scene.add( ambientLight );
@@ -48,6 +67,16 @@ window.addEventListener('DOMContentLoaded', () => {
         // Update room color based on dark mode
         const isDark = document.documentElement.classList.contains('dark');
         roomMaterial.color.set(isDark ? 0x1f271b : 0xF2F0EF);
+        particleMaterial.color.set(isDark ? 0xF2F0EF : 0x11120e);
+        scene.traverse((object) => {
+            if (object.isMesh && object.geometry.type === 'TextGeometry') {
+                object.material.color.set(isDark ? 0xF2F0EF : 0x11120e);
+            }
+        });
+
+        // Animate particles
+        const time = Date.now() * 0.0001;
+        particleSystem.rotation.y = time;
 
         renderer.render( scene, camera );
     }
