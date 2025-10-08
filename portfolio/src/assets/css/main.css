@@ -28,12 +28,12 @@ body {
 }
 
 mark {
-    color: #136e2f;
+    color: #97d6aa;
     background: none;
 }
 
 .dark mark {
-    color: #5a9e70;
+    color: #268845;
     background: none;
 }
 
@@ -45,6 +45,16 @@ mark {
 .dark ::selection {
     background: transparent;
     color: #11120e;
+}
+
+mark::selection {
+    background: transparent;
+    color: #686969;
+}
+
+.dark mark::selection {
+    background: transparent;
+    color: #060a06;
 }
 
 #three-canvas {
