@@ -50,6 +50,40 @@ window.addEventListener('DOMContentLoaded', () => {
     const particleSystem = new THREE.Points(particles, particleMaterial);
     scene.add(particleSystem);
 
+    // Particle explosion setup
+    const originalPositions = particles.attributes.position.array;
+    const explodedPositions = new Float32Array(originalPositions.length);
+    for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        const vertex = new THREE.Vector3(originalPositions[i3], originalPositions[i3 + 1], originalPositions[i3 + 2]);
+        const direction = vertex.clone().normalize();
+        const explosionDistance = Math.random() * 20 + 10;
+        const newPos = vertex.clone().add(direction.multiplyScalar(explosionDistance));
+        explodedPositions[i3] = newPos.x;
+        explodedPositions[i3+1] = newPos.y;
+        explodedPositions[i3+2] = newPos.z;
+    }
+
+    let exploded = false;
+    window.addEventListener('click', () => {
+        if (typeof gsap !== 'undefined') {
+            const targetArray = exploded ? originalPositions : explodedPositions;
+            const currentPositions = particles.attributes.position.array;
+
+            gsap.to(currentPositions, {
+                duration: 2,
+                endArray: targetArray,
+                ease: "power2.inOut",
+                onUpdate: () => {
+                    particles.attributes.position.needsUpdate = true;
+                }
+            });
+
+            exploded = !exploded;
+        }
+    });
+
+
     // Lights
     const ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
     scene.add( ambientLight );
