@@ -161,7 +161,7 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && typeo
     });
 
 
-    gsap.from('header, main', {
+    gsap.from('header, main, #projects', {
         duration: 1.5,
         y: -30,
         opacity: 0,
